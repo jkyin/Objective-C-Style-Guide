@@ -26,18 +26,18 @@
 * [命名](#命名)
   * [下划线](#下划线)
 * [注释](#注释)
-* [初始化和内存释放](#初始化和内存释放)
+* [init 和 dealloc](#init-和-dealloc)
 * [文字变量](#文字变量)
-* [CGRect Functions](#cgrect-functions)
+* [CGRect 函数](#cgrect-函数)
 * [常量](#常量)
 * [Bitmasks](#bitmasks)
-* [Case 语句](#case-语句)
 * [枚举类型](#枚举类型)
+* [Case 语句](#case-语句)
 * [私有属性](#私有属性)
 * [图片命名](#图片命名)
 * [布尔值](#布尔值)
 * [单例](#单例)
-* [Xcode project](#xcode-project)
+* [Xcode 工程](#xcode-工程)
 
 ## 语言
 
@@ -332,7 +332,7 @@ When using properties, instance variables should always be accessed and mutated 
 
 应该避免使用块注释，并且尽可能的让代码易读，只在有需要的时候用一两行来解释代码做了什么。这项说明不适用于需要用来生成文档的注释。
 
-## 初始化和内存释放
+## init 和 dealloc
 
 `dealloc` 方法应该放在 `implementation` 的上面，紧跟着 `@synthesize` 和 `@dynamic` 语句的后面。任何类的 `init` 应该直接放在 `dealloc` 方法的下面。
 
@@ -373,7 +373,7 @@ NSNumber *shouldUseLiterals = [NSNumber numberWithBool:YES];
 NSNumber *buildingZIPCode = [NSNumber numberWithInteger:10018];
 ```
 
-## CGRect Functions
+## CGRect 函数
 
 When accessing the `x`, `y`, `width`, or `height` of a `CGRect`, always use the [`CGGeometry` functions](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html) instead of direct struct member access. From Apple's `CGGeometry` reference:
 当访问 `x`, `y`, `width`，或 `CGRect` 中的 `height`，总是应该使用 `CGGeometry` 函数，而不应该直接访问结构的成员。来自 Apple 的 [CGGeometry 文档](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html) 引用：
@@ -605,7 +605,7 @@ if ([someObject boolValue] == NO)
 
 这能够防止[某些时候可能出现各种程序崩溃的问题](http://cocoasamurai.blogspot.com/2011/04/singletons-your-doing-them-wrong.html)。
 
-## Xcode project
+## Xcode 工程
 
 为了防止文件散乱，实际文件应该要与 Xcode 工程里的文件保持同步。任何 Xcode 分组的创建都应该能够在文件系统里体现出来。代码文件不仅仅单一地根据类型来分组，而且还可以按更明显的用途来分组。
 
