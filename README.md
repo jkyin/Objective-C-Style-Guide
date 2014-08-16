@@ -30,16 +30,16 @@ Thanks to all of [our contributors](https://github.com/NYTimes/objective-c-style
 * [注释](#注释)
 * [初始化 & 内存释放](#init-and-dealloc)
 * [文字变量](#文字变量)
-* [CGRect 函数](#cgrect-functions)
+* [CGRect 函数](#CGRect 函数)
 * [常量](#常量)
 * [Bitmasks](#bitmasks)
-* [Case 语句]()
+* [Case 语句](Case 语句)
 * [枚举类型](#枚举类型)
 * [私有属性](#私有属性)
 * [图片命名](#图片命名)
 * [布尔值](#布尔值)
 * [单例](#单例)
-* [Xcode 工程](#xcode-project)
+* [Xcode 工程](#Xcode 工程)
 
 ## 语言
 
@@ -188,7 +188,7 @@ if (!error)
 if (!error) return success;
 ```
 
-### 三元操作符
+### 三元运算符
 
 三元操作符应该只被用来提高代码的简洁性。单条件语句通常还有待评价。多重条件语句通常比 if 语句，或重构实例变量时更易于理解。
 
