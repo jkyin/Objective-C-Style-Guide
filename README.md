@@ -2,8 +2,6 @@
 
 这篇风格指南概括了「纽约时代周刊」工作的 iOS 团队 raywenderlich.com 的编码约定。我们非常欢迎在 [issues](https://github.com/jkyin/Objective-C-Style-Guide/issues/new) 和 [pull requests](https://github.com/jkyin/Objective-C-Style-Guide/pulls) 上给我们反馈。
 
-Thanks to all of [our contributors](https://github.com/NYTimes/objective-c-style-guide/contributors).
-
 ## 介绍
 
 这里是一些来自 Apple 的风格指南文档。如果某些没有在本文提及，那在下面这些文档中的某篇会有详细说明：
@@ -28,9 +26,9 @@ Thanks to all of [our contributors](https://github.com/NYTimes/objective-c-style
 * [命名](#命名)
   * [下划线](#下划线)
 * [注释](#注释)
-* [初始化 & 内存释放](#init-and-dealloc)
+* [初始化和内存释放](#初始化和内存释放)
 * [文字变量](#文字变量)
-* [CGRect 函数](#CGRect 函数)
+* [CGRect 函数](#CGRect函数)
 * [常量](#常量)
 * [Bitmasks](#bitmasks)
 * [Case 语句](Case 语句)
@@ -39,7 +37,7 @@ Thanks to all of [our contributors](https://github.com/NYTimes/objective-c-style
 * [图片命名](#图片命名)
 * [布尔值](#布尔值)
 * [单例](#单例)
-* [Xcode 工程](#Xcode 工程)
+* [Xcode 工程](#Xcode工程)
 
 ## 语言
 
@@ -334,7 +332,7 @@ When using properties, instance variables should always be accessed and mutated 
 
 应该避免使用块注释，并且尽可能的让代码易读，只在有需要的时候用一两行来解释代码做了什么。这项说明不适用于需要用来生成文档的注释。
 
-## init 和 dealloc
+## 初始化和内存释放
 
 `dealloc` 方法应该放在 `implementation` 的上面，紧跟着 `@synthesize` 和 `@dynamic` 语句的后面。任何类的 `init` 应该直接放在 `dealloc` 方法的下面。
 
@@ -375,7 +373,7 @@ NSNumber *shouldUseLiterals = [NSNumber numberWithBool:YES];
 NSNumber *buildingZIPCode = [NSNumber numberWithInteger:10018];
 ```
 
-## CGRect 函数
+## CGRect函数
 
 When accessing the `x`, `y`, `width`, or `height` of a `CGRect`, always use the [`CGGeometry` functions](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html) instead of direct struct member access. From Apple's `CGGeometry` reference:
 当访问 `x`, `y`, `width`，或 `CGRect` 中的 `height`，总是应该使用 `CGGeometry` 函数，而不应该直接访问结构的成员。来自 Apple 的 [CGGeometry 文档](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html) 引用：
@@ -453,7 +451,7 @@ typedef NS_OPTIONS(NSUInteger, NYTAdCategory) {
   NYTAdCategoryTechnology = 1 << 3
 };
 ```
-## Case 语句
+## Case语句
 
 对于 case 语句来说，花括号没必要，除非编译器强制要求。  
 当一个 case 包含有多行的时候，那必须添加花括号。
@@ -607,7 +605,7 @@ if ([someObject boolValue] == NO)
 
 这能够防止[某些时候可能出现各种程序崩溃的问题](http://cocoasamurai.blogspot.com/2011/04/singletons-your-doing-them-wrong.html)。
 
-## Xcode 工程
+## Xcode工程
 
 为了防止文件散乱，实际文件应该要与 Xcode 工程里的文件保持同步。任何 Xcode 分组的创建都应该能够在文件系统里体现出来。代码文件不仅仅单一地根据类型来分组，而且还可以按更明显的用途来分组。
 
