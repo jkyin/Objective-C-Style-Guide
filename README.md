@@ -28,7 +28,7 @@
 * [注释](#注释)
 * [初始化和内存释放](#初始化和内存释放)
 * [文字变量](#文字变量)
-* [CGRect函数](#CGRect函数)
+* [CGRect 函数](#CGRect-函数)
 * [常量](#常量)
 * [Bitmasks](#bitmasks)
 * [Case 语句](Case 语句)
