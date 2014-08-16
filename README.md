@@ -31,7 +31,7 @@
 * [CGRect Functions](#cgrect-functions)
 * [常量](#常量)
 * [Bitmasks](#bitmasks)
-* [Case 语句](case-语句)
+* [Case 语句](#case-语句)
 * [枚举类型](#枚举类型)
 * [私有属性](#私有属性)
 * [图片命名](#图片命名)
