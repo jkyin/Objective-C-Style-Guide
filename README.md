@@ -1,4 +1,4 @@
-# NYTimes Objective-C Style Guide
+# Objective-C Style Guide
 
 这篇风格指南概括了「纽约时代周刊」工作的 iOS 团队 raywenderlich.com 的编码约定。我们非常欢迎在 [issues](https://github.com/jkyin/Objective-C-Style-Guide/issues/new) 和 [pull requests](https://github.com/jkyin/Objective-C-Style-Guide/pulls) 上给我们反馈。
 
@@ -11,7 +11,7 @@
 * [Coding Guidelines for Cocoa](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html)
 * [iOS App Programming Guide](http://developer.apple.com/library/ios/#documentation/iphone/conceptual/iphoneosprogrammingguide/Introduction/Introduction.html)
 
-## 目录表
+## 目录
 
 * [语言](#语言)
 * [组织代码](#组织代码)
@@ -30,8 +30,8 @@
 * [文字变量](#文字变量)
 * [CGRect 函数](#cgrect-函数)
 * [常量](#常量)
-* [Bitmasks](#bitmasks)
 * [枚举类型](#枚举类型)
+* [Bitmasks](#bitmasks)
 * [Case 语句](#case-语句)
 * [私有属性](#私有属性)
 * [图片命名](#图片命名)
@@ -45,13 +45,13 @@
 
 **推荐：**
 
-```objc
+```objectivec
 UIColor *myColor = [UIColor whiteColor];
 ```
 
 **不推荐：**
 
-```objc
+```objectivec
 UIColor *myColour = [UIColor whiteColor];
 ```
 
@@ -59,7 +59,7 @@ UIColor *myColour = [UIColor whiteColor];
 
 使用 `#pragma mark -` 来把方法按功能分类，协议 / 委托也使用这个基本结构。
 
-```objc
+```objectivec
 #pragma mark - Lifecycle
 
 - (instancetype)init {}
@@ -105,14 +105,14 @@ UIColor *myColour = [UIColor whiteColor];
 
 **例如：**
 
-```objc
+```objectivec
 view.backgroundColor = [UIColor orangeColor];
 [UIApplication sharedApplication].delegate;
 ```
 
 **而不是：**
 
-```objc
+```objectivec
 [view setBackgroundColor:[UIColor orangeColor]];
 UIApplication.sharedApplication.delegate;
 ```
@@ -124,7 +124,7 @@ UIApplication.sharedApplication.delegate;
 
 **例如：**
 
-```objc
+```objectivec
 if (user.isHappy) 
 {
 	//Do something
@@ -167,7 +167,7 @@ if (user.isHappy)
 
 **例如：**
 
-```objc
+```objectivec
 if (!error) {
     return success;
 }
@@ -175,14 +175,14 @@ if (!error) {
 
 **而不是：**
 
-```objc
+```objectivec
 if (!error)
     return success;
 ```
 
 或者
 
-```objc
+```objectivec
 if (!error) return success;
 ```
 
@@ -192,13 +192,13 @@ if (!error) return success;
 
 **例如：**
 
-```objc
+```objectivec
 result = a > b ? x : y;
 ```
 
 **而不是：**
 
-```objc
+```objectivec
 result = a > b ? x = c > d ? c : d : y;
 ```
 
@@ -208,7 +208,7 @@ result = a > b ? x = c > d ? c : d : y;
 
 **例如：**
 
-```objc
+```objectivec
 NSError *error;
 if (![self trySomethingWithError:&error]) {
     // Handle Error
@@ -217,7 +217,7 @@ if (![self trySomethingWithError:&error]) {
 
 **而不是：**
 
-```objc
+```objectivec
 NSError *error;
 [self trySomethingWithError:&error];
 if (error) {
@@ -233,7 +233,7 @@ Some of Apple’s APIs write garbage values to the error parameter (if non-NULL)
 
 **例如：**:
 
-```objc
+```objectivec
 - (void)setExampleText:(NSString *)text image:(UIImage *)image;
 ```
 
@@ -243,13 +243,11 @@ Some of Apple’s APIs write garbage values to the error parameter (if non-NULL)
 
 星号表示变量是一个指针，例如 `NSString *text` 不要写成 `NSString* text`。也不见意使用 `NSString * text`，除非是在定义常量的情况下。
 
-Property definitions should be used in place of naked instance variables whenever possible. Direct instance variable access should be avoided except in initializer methods (`init`, `initWithCoder:`, etc…), `dealloc` methods and within custom setters and getters. For more information on using Accessor Methods in Initializer Methods and dealloc, see [here](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmPractical.html#//apple_ref/doc/uid/TP40004447-SW6).
-
 属性应该无论在何时都应该是用来代替很直白的实例变量。应该避免直接使用实例变量，除非在初始化方法中（`init`, `initWithCoder:`，等等），`dealloc` 方法和自定义的 `setter` 和 `getter` 方法中。想要了解更多关于在初始化方法和 dealloc 中存储器方法信息请访问[这里](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmPractical.html#//apple_ref/doc/uid/TP40004447-SW6)。
 
 **例如：**
 
-```objc
+```objectivec
 @interface NYTSection: NSObject
 
 @property (nonatomic) NSString *headline;
@@ -259,7 +257,7 @@ Property definitions should be used in place of naked instance variables wheneve
 
 **而不是：**
 
-```objc
+```objectivec
 @interface NYTSection : NSObject {
     NSString *headline;
 }
@@ -277,13 +275,13 @@ Apple 命名规范无论何时都应该被遵循，尤其是那些跟[内存管�
 
 **例如：**
 
-```objc
+```objectivec
 UIButton *settingsButton;
 ```
 
 **而不是：**
 
-```objc
+```objectivec
 UIButton *setBut;
 ```
 
@@ -291,13 +289,13 @@ UIButton *setBut;
 
 **例如：**
 
-```objc
+```objectivec
 static const NSTimeInterval NYTArticleViewControllerNavigationFadeAnimationDuration = 0.3;
 ```
 
 **而不是**
 
-```objc
+```objectivec
 static const NSTimeInterval fadetime = 1.7;
 ```
 
@@ -313,13 +311,12 @@ static const NSTimeInterval fadetime = 1.7;
 
 **而不是：**
 
-```objc
+```objectivec
 id varnm;
 ```
 
 ### 下划线
 
-When using properties, instance variables should always be accessed and mutated using `self.`. This means that all properties will be visually distinct, as they will all be prefaced with `self.`. 
 当使用属性的时候，实例变量应该总是能够通过 `self.` 来访问和改变值。这样做能够使所有的属性在视觉上变得更明显。
 
 一个例外情况是：在初始化程序内部，辅助实例变量（例如：_variableName）应该直接用来防止任何 getters/setters 潜在的副作用。
@@ -338,7 +335,7 @@ When using properties, instance variables should always be accessed and mutated 
 
 `init` 方法的结构应该是这样的：
 
-```objc
+```objectivec
 - (instancetype)init 
 {
     self = [super init]; // or call the designated initalizer
@@ -357,7 +354,7 @@ When using properties, instance variables should always be accessed and mutated 
 
 **例如：**
 
-```objc
+```objectivec
 NSArray *names = @[@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul"];
 NSDictionary *productManagers = @{@"iPhone" : @"Kate", @"iPad" : @"Kamal", @"Mobile Web" : @"Bill"};
 NSNumber *shouldUseLiterals = @YES;
@@ -366,7 +363,7 @@ NSNumber *buildingZIPCode = @10018;
 
 **而不是**
 
-```objc
+```objectivec
 NSArray *names = [NSArray arrayWithObjects:@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul", nil];
 NSDictionary *productManagers = [NSDictionary dictionaryWithObjectsAndKeys: @"Kate", @"iPhone", @"Kamal", @"iPad", @"Bill", @"Mobile Web", nil];
 NSNumber *shouldUseLiterals = [NSNumber numberWithBool:YES];
@@ -375,15 +372,13 @@ NSNumber *buildingZIPCode = [NSNumber numberWithInteger:10018];
 
 ## CGRect 函数
 
-When accessing the `x`, `y`, `width`, or `height` of a `CGRect`, always use the [`CGGeometry` functions](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html) instead of direct struct member access. From Apple's `CGGeometry` reference:
 当访问 `x`, `y`, `width`，或 `CGRect` 中的 `height`，总是应该使用 `CGGeometry` 函数，而不应该直接访问结构的成员。来自 Apple 的 [CGGeometry 文档](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html) 引用：
 
-> All functions described in this reference that take CGRect data structures as inputs implicitly standardize those rectangles before calculating their results. For this reason, your applications should avoid directly reading and writing the data stored in the CGRect data structure. Instead, use the functions described here to manipulate rectangles and to retrieve their characteristics.
 > 在计算那些矩形的结果之前，这篇参考中所提到的所有使用 CGRect 数据结构的函数会使用隐式输入规范。由于这个原因，你的应用应该避免直接读写存储在 CGRect 数据结构中的数据。相反，使用这里的函数写法来操作矩形和检索它们的特征。
 
 **例如：**
 
-```objc
+```objectivec
 CGRect frame = self.view.frame;
 
 CGFloat x = CGRectGetMinX(frame);
@@ -394,7 +389,7 @@ CGFloat height = CGRectGetHeight(frame);
 
 **而不是：**
 
-```objc
+```objectivec
 CGRect frame = self.view.frame;
 
 CGFloat x = frame.origin.x;
@@ -409,7 +404,7 @@ CGFloat height = frame.size.height;
 
 **例如：**
 
-```objc
+```objectivec
 static NSString * const NYTAboutViewControllerCompanyName = @"The New York Times Company";
 
 static const CGFloat NYTImageThumbnailHeight = 50.0;
@@ -417,7 +412,7 @@ static const CGFloat NYTImageThumbnailHeight = 50.0;
 
 **而不是：**
 
-```objc
+```objectivec
 #define CompanyName @"The New York Times Company"
 
 #define thumbnailHeight 2
@@ -430,7 +425,7 @@ When using `enum`s, it is recommended to use the new fixed underlying type speci
 
 **例如：**
 
-```objc
+```objectivec
 typedef NS_ENUM(NSInteger, NYTAdRequestState) {
     NYTAdRequestStateInactive,
     NYTAdRequestStateLoading
@@ -443,7 +438,7 @@ When working with bitmasks, use the `NS_OPTIONS` macro.
 
 **Example:**
 
-```objc
+```objectivec
 typedef NS_OPTIONS(NSUInteger, NYTAdCategory) {
   NYTAdCategoryAutos      = 1 << 0,
   NYTAdCategoryJobs       = 1 << 1,
@@ -458,7 +453,7 @@ typedef NS_OPTIONS(NSUInteger, NYTAdCategory) {
 
 **例如：**
 
-```objc
+```objectivec
 switch (condition) {
   case 1:
     // ...
@@ -475,13 +470,12 @@ switch (condition) {
     // ...
     break;
 }
-
 ```
 
 有时相同的代码能够用于多种情况下，这时应该使用瀑布流的方式。瀑布流指的是移除了 `break` 语句的情况，因此可以允许执行流传递到下一个 case 的值。瀑布流的注释应该一目了然。
 
 
-```objc
+```objectivec
 switch (condition) {
 	case 1:
     	// ** 瀑布流！**
@@ -492,12 +486,11 @@ switch (condition) {
     	// ...
     	break;
 }
-
 ```
 
 当在 switch 中使用枚举类型的时候，`default` 并不需要。例如：
 
-```objc
+```objectivec
 RWTLeftMenuTopItemType menuType = RWTLeftMenuTopItemMain;
 
 switch (menuType) {
@@ -519,7 +512,7 @@ switch (menuType) {
 
 **例如：**
 
-```objc
+```objectivec
 @interface NYTAdvertisement ()
 
 @property (nonatomic, strong) GADBannerView *googleAdView;
@@ -548,14 +541,14 @@ switch (menuType) {
 
 **例如：**
 
-```objc
+```objectivec
 if (!someObject) {
 }
 ```
 
 **而不是：**
 
-```objc
+```objectivec
 if (someObject == nil) {
 }
 ```
@@ -564,14 +557,14 @@ if (someObject == nil) {
 
 **这里是两个 `BOOL` 的例子**
 
-```objc
+```objectivec
 if (isAwesome)
 if (![someObject boolValue])
 ```
 
 **而不是：**
 
-```objc
+```objectivec
 if (isAwesome == YES) // 绝不要这样做
 if ([someObject boolValue] == NO)
 ```
@@ -580,7 +573,7 @@ if ([someObject boolValue] == NO)
 
 `BOOL` 属性的名字应该取名为形容词，属性名可以忽略 'is' 前缀，但 `get` 访问方法要使用传统的命名，例如：
 
-```objc
+```objectivec
 @property (assign, getter=isEditable) BOOL editable;
 ```
 
@@ -590,7 +583,7 @@ if ([someObject boolValue] == NO)
 
 单例对象应该使用安全线程机制来创建它们的共享实例。
 
-```objc
+```objectivec
 + (instancetype)sharedInstance {
    static id sharedInstance = nil;
 
