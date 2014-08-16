@@ -28,7 +28,7 @@
 * [注释](#注释)
 * [初始化和内存释放](#初始化和内存释放)
 * [文字变量](#文字变量)
-* [CGRect 函数](#CGRect-函数)
+* [CGRect Functions](#cgrect-functions)
 * [常量](#常量)
 * [Bitmasks](#bitmasks)
 * [Case 语句](Case 语句)
@@ -373,7 +373,7 @@ NSNumber *shouldUseLiterals = [NSNumber numberWithBool:YES];
 NSNumber *buildingZIPCode = [NSNumber numberWithInteger:10018];
 ```
 
-## CGRect函数
+## CGRect Functions
 
 When accessing the `x`, `y`, `width`, or `height` of a `CGRect`, always use the [`CGGeometry` functions](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html) instead of direct struct member access. From Apple's `CGGeometry` reference:
 当访问 `x`, `y`, `width`，或 `CGRect` 中的 `height`，总是应该使用 `CGGeometry` 函数，而不应该直接访问结构的成员。来自 Apple 的 [CGGeometry 文档](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html) 引用：
