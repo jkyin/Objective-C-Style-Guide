@@ -31,13 +31,13 @@
 * [CGRect Functions](#cgrect-functions)
 * [常量](#常量)
 * [Bitmasks](#bitmasks)
-* [Case 语句](Case 语句)
+* [Case 语句](case-语句)
 * [枚举类型](#枚举类型)
 * [私有属性](#私有属性)
 * [图片命名](#图片命名)
 * [布尔值](#布尔值)
 * [单例](#单例)
-* [Xcode工程](#Xcode工程)
+* [Xcode project](#xcode-project)
 
 ## 语言
 
@@ -451,7 +451,7 @@ typedef NS_OPTIONS(NSUInteger, NYTAdCategory) {
   NYTAdCategoryTechnology = 1 << 3
 };
 ```
-## Case语句
+## Case 语句
 
 对于 case 语句来说，花括号没必要，除非编译器强制要求。  
 当一个 case 包含有多行的时候，那必须添加花括号。
@@ -605,7 +605,7 @@ if ([someObject boolValue] == NO)
 
 这能够防止[某些时候可能出现各种程序崩溃的问题](http://cocoasamurai.blogspot.com/2011/04/singletons-your-doing-them-wrong.html)。
 
-## Xcode工程
+## Xcode project
 
 为了防止文件散乱，实际文件应该要与 Xcode 工程里的文件保持同步。任何 Xcode 分组的创建都应该能够在文件系统里体现出来。代码文件不仅仅单一地根据类型来分组，而且还可以按更明显的用途来分组。
 
