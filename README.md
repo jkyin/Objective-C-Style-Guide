@@ -121,14 +121,13 @@ UIApplication.sharedApplication.delegate;
 
 ## 空格
 
-* 使用 4 个空格缩进。永远不要使用 Tab 键。确保在 Xcode 设置中选中此偏好。
+* 使用 4 个空格缩进。如果使用 Tab 键。确保在 Xcode 设置中选中 `Tab with width 4 spaces` 偏好。
 * 方法间的花括号和其他类型的括号 (`if`/`else`/`switch`/`while` 等等) 应该始终另起一行。
 
 **例如：**
 
 ```objc
-if (user.isHappy) 
-{
+if (user.isHappy) {
 	//Do something
 } else {
 	//Do something else
@@ -227,7 +226,7 @@ if (error) {
 }
 ```
 
-Some of Apple’s APIs write garbage values to the error parameter (if non-NULL) in successful cases, so switching on the error can cause false negatives (and subsequently crash).
+一些 Apple 的 API 在成功案例（如果非空）处写了一些垃圾值来使参数出错，这样在出现错误的时候会引起一些失败的东西（接着就崩溃了）。
 
 ## 方法
 
@@ -245,9 +244,7 @@ Some of Apple’s APIs write garbage values to the error parameter (if non-NULL)
 
 星号表示变量是一个指针，例如 `NSString *text` 不要写成 `NSString* text`。也不见意使用 `NSString * text`，除非是在定义常量的情况下。
 
-Property definitions should be used in place of naked instance variables whenever possible. Direct instance variable access should be avoided except in initializer methods (`init`, `initWithCoder:`, etc…), `dealloc` methods and within custom setters and getters. For more information on using Accessor Methods in Initializer Methods and dealloc, see [here](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmPractical.html#//apple_ref/doc/uid/TP40004447-SW6).
-
-属性应该无论在何时都应该是用来代替很直白的实例变量。应该避免直接使用实例变量，除非在初始化方法中（`init`, `initWithCoder:`，等等），`dealloc` 方法和自定义的 `setter` 和 `getter` 方法中。想要了解更多关于在初始化方法和 dealloc 中存储器方法信息请访问[这里](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmPractical.html#//apple_ref/doc/uid/TP40004447-SW6)。
+属性定义无论在何时都应该是用来代替直白的实例变量。应该避免直接使用实例变量，除非在初始化方法中（`init`, `initWithCoder:`，等等），`dealloc` 方法和自定义的 `setter` 和 `getter` 方法中。想要了解更多关于在初始化方法和 dealloc 中存储器方法信息请访问[这里](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmPractical.html#//apple_ref/doc/uid/TP40004447-SW6)。
 
 **例如：**
 
@@ -354,7 +351,6 @@ When using properties, instance variables should always be accessed and mutated 
 
 ## 文字变量
 
-`NSString`, `NSDictionary`, `NSArray`, and `NSNumber` literals should be used whenever creating immutable instances of those objects. Pay special care that `nil` values not be passed into `NSArray` and `NSDictionary` literals, as this will cause a crash.
 `NSString`, `NSDictionary`, `NSArray`, 和 `NSNumber` 这些文字变量无论在何时都应该被用来创建不可变的实例对象。特别要留意 `nil` ，不要把它传入到了 `NSArray` 和 `NSDictionary` 中，因为这样会导致崩溃。
 
 **例如：**
@@ -377,10 +373,8 @@ NSNumber *buildingZIPCode = [NSNumber numberWithInteger:10018];
 
 ## CGRect 函数
 
-When accessing the `x`, `y`, `width`, or `height` of a `CGRect`, always use the [`CGGeometry` functions](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html) instead of direct struct member access. From Apple's `CGGeometry` reference:
-当访问 `x`, `y`, `width`，或 `CGRect` 中的 `height`，总是应该使用 `CGGeometry` 函数，而不应该直接访问结构的成员。来自 Apple 的 [CGGeometry 文档](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html) 引用：
+当访问 `x`, `y`, `width`，或 `CGRect` 中的 `height`，总是应该使用 `CGGeometry` 函数，而不应该直接访问结构的成员。来自 Apple 的 [CGGeometry 文档](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html) 参考：
 
-> All functions described in this reference that take CGRect data structures as inputs implicitly standardize those rectangles before calculating their results. For this reason, your applications should avoid directly reading and writing the data stored in the CGRect data structure. Instead, use the functions described here to manipulate rectangles and to retrieve their characteristics.
 > 在计算那些矩形的结果之前，这篇参考中所提到的所有使用 CGRect 数据结构的函数会使用隐式输入规范。由于这个原因，你的应用应该避免直接读写存储在 CGRect 数据结构中的数据。相反，使用这里的函数写法来操作矩形和检索它们的特征。
 
 **例如：**
@@ -425,9 +419,6 @@ static const CGFloat NYTImageThumbnailHeight = 50.0;
 #define thumbnailHeight 2
 ```
 
-## 枚举类型
-
-When using `enum`s, it is recommended to use the new fixed underlying type specification because it has stronger type checking and code completion. The SDK now includes a macro to facilitate and encourage use of fixed underlying types — `NS_ENUM()`
 当使用 `enum` 的时候，通常建议新的固定基础类型规范，因为它具有更强的类型检查和代码自动化。现在的 SDK 已包含了一个宏来来很方便的鼓励固定基础类型的使用 - `NS_ENUM()`。
 
 **例如：**
