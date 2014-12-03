@@ -1,6 +1,6 @@
 # Objective-C Style Guide
 
-这篇风格指南概括了「纽约时代周刊」工作的 iOS 团队 raywenderlich.com 的编码约定。我们非常欢迎在 [issues](https://github.com/jkyin/Objective-C-Style-Guide/issues/new) 和 [pull requests](https://github.com/jkyin/Objective-C-Style-Guide/pulls) 上给我们反馈。
+这篇风格指南概括了「纽约时代周刊」工作的 iOS 团队的编码约定。我们非常欢迎在 [issues](https://github.com/jkyin/Objective-C-Style-Guide/issues/new) 和 [pull requests](https://github.com/jkyin/Objective-C-Style-Guide/pulls) 上给我们反馈。
 
 ## 介绍
 
@@ -13,32 +13,33 @@
 
 ## 目录
 
-* [语言](#语言)
-* [组织代码](#组织代码)
-* [点语法](#点语法)
-* [空格](#空格)
-* [条件语句](#条件语句)
-  * [三元运算符](#三元运算符)
-* [错误处理](#错误处理)
-* [方法](#方法)
-* [变量](#变量)
-  * [变量修饰符](#变量修饰符) 
-* [命名](#命名)
-  * [下划线](#下划线)
-* [注释](#注释)
-* [init 和 dealloc](#init-和-dealloc)
-* [文字变量](#文字变量)
-* [CGRect 函数](#cgrect-函数)
-* [常量](#常量)
-* [枚举类型](#枚举类型)
-* [Bitmasks](#bitmasks)
-* [Case 语句](#case-语句)
-* [私有属性](#私有属性)
-* [图片命名](#图片命名)
-* [布尔值](#布尔值)
-* [单例](#单例)
-* [Xcode 工程](#xcode-工程)
+* [语言](#Language)
+* [组织代码](#Code-Organization)
+* [点语法](#Dot-Notation-Syntax)
+* [空格](#Spacing)
+* [条件语句](#Conditionals)
+  * [三元运算符](#Ternary-Operator)
+* [错误处理](#Error-handling)
+* [方法](#Methods)
+* [变量](#Variables)
+  * [变量修饰符](#Variable-Qualifiers) 
+* [命名](#Naming)
+  * [下划线](#Underscores)
+* [注释](#Comments)
+* [init 和 dealloc](#Init&Dealloc)
+* [文字变量](#Literals)
+* [CGRect 函数](#CGRect-Functions)
+* [常量](#Constants)
+* [枚举类型](#Enumerated-Types)
+* [Bitmasks](#Bitmasks)
+* [Case 语句](#Case-Statements)
+* [私有属性](#Private-Properties)
+* [图片命名](#Image Naming)
+* [布尔值](#Booleans)
+* [单例](#Singletons)
+* [Xcode 工程](#Xcode-Project)
 
+<a name="Language"></a>
 ## 语言
 
 要求使用美式英语。
@@ -55,6 +56,7 @@ UIColor *myColor = [UIColor whiteColor];
 UIColor *myColour = [UIColor whiteColor];
 ```
 
+<a name="Code-Organization"></a>
 ## 组织代码
 
 使用 `#pragma mark -` 来把方法按功能分类，协议 / 委托也使用这个基本结构。
@@ -99,6 +101,7 @@ UIColor *myColour = [UIColor whiteColor];
 - (NSString *)description {}
 ```
 
+<a name="Dot-Notation-Syntax"><a/>
 ## 点语法
 
 点语法应该**总是**被用来访问要可变属性。中括号语法优先用于其他所有的实例对象。
@@ -117,6 +120,7 @@ view.backgroundColor = [UIColor orangeColor];
 UIApplication.sharedApplication.delegate;
 ```
 
+<a name="Spacing"></a>
 ## 空格
 
 * 使用 4 个空格缩进。如果使用 Tab 键。确保在 Xcode 设置中选中 `Tab with width 4 spaces` 偏好。
@@ -160,6 +164,7 @@ if (user.isHappy) {
                  }];
 ```
 
+<a name="Conditionals"></a>
 ## 条件语句
 
 条件语句应该总是使用括号来包含条件主体（即使它只有一行），如果不写入括号中会出现[错误](https://github.com/NYTimes/objective-c-style-guide/issues/26#issuecomment-22074256)。这个错误会把第二行代码包含进 if 语句中。另一方面，在 if 语句内部被注释掉的话还会有[更危险的缺陷会发生](http://programmers.stackexchange.com/a/16530)，下一行就会毫无察觉地成了 if 语句的一部分。此外，这种风格与其他表达式语句一起具有更好的一致性，并且因此更易读。
@@ -185,6 +190,7 @@ if (!error)
 if (!error) return success;
 ```
 
+<a name="Ternary-Operator"></a>
 ### 三元运算符
 
 三元操作符应该只被用来提高代码的简洁性。单条件语句通常还有待评价。多重条件语句通常比 if 语句，或重构实例变量时更易于理解。
@@ -201,6 +207,7 @@ result = a > b ? x : y;
 result = a > b ? x = c > d ? c : d : y;
 ```
 
+<a name="Error-handling"></a>
 ## 错误处理
 
 当方法通过引用返回一个 error 参数的时候，要转换为返回的值，而不是 error 变量。
@@ -226,6 +233,7 @@ if (error) {
 
 一些 Apple 的 API 在成功案例（如果非空）处写了一些垃圾值来使参数出错，这样在出现错误的时候会引起一些失败的东西（接着就崩溃了）。
 
+<a name="Methods"></a>
 ## 方法
 
 在方法声明中，应该在（-/+ 符号）的后面留一个空格。在方法的分段处也应该留一个空格。
@@ -236,6 +244,7 @@ if (error) {
 - (void)setExampleText:(NSString *)text image:(UIImage *)image;
 ```
 
+<a name="Variables"></a>
 ## 变量
 
 变量应该尽可能的用描述性的语言命名。应该避免使用单字母来命名变量，除了用于 `for()` 循环。
@@ -262,10 +271,12 @@ if (error) {
 }
 ```
 
+<a name="Variable-Qualifiers"></a>
 ### 变量修饰符
 
 当要[引入 ARC ](https://developer.apple.com/library/ios/releasenotes/objectivec/rn-transitioningtoarc/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226-CH1-SW4)使用变量修饰符的时候，修饰符（`__strong`, `__weak`, `__unsafe_unretained`, `__autoreleasing`）应该放在变量名和星号之间，例如：`NSString * __weak text`。
 
+<a name="Naming"></a>
 ## 命名
 
 Apple 命名规范无论何时都应该被遵循，尤其是那些跟[内存管理规则](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html) ([NARC](http://stackoverflow.com/a/2865194/340508))相关的。
@@ -314,6 +325,7 @@ static const NSTimeInterval fadetime = 1.7;
 id varnm;
 ```
 
+<a name="Underscores"></a>
 ### 下划线
 
 当使用属性的时候，实例变量应该总是能够通过 `self.` 来访问和改变值。这样做能够使所有的属性在视觉上变得更明显。
@@ -322,12 +334,14 @@ id varnm;
 
 局部变量不应该包含下划线。
 
+<a name="Comments"></a>
 ## 注释
 
 当需要注释的时候，注释应该是用来解释**为什么**的，即这块代码做了哪些事情的详细说明。任何注释要么是最新的要么就删掉。
 
 应该避免使用块注释，并且尽可能的让代码易读，只在有需要的时候用一两行来解释代码做了什么。这项说明不适用于需要用来生成文档的注释。
 
+<a name="Init&Dealloc"></a>
 ## init 和 dealloc
 
 `dealloc` 方法应该放在 `implementation` 的上面，紧跟着 `@synthesize` 和 `@dynamic` 语句的后面。任何类的 `init` 应该直接放在 `dealloc` 方法的下面。
@@ -346,6 +360,7 @@ id varnm;
 }
 ```
 
+<a name="Literals"></a>
 ## 文字变量
 
 `NSString`, `NSDictionary`, `NSArray`, 和 `NSNumber` 这些文字变量无论在何时都应该被用来创建不可变的实例对象。特别要留意 `nil` ，不要把它传入到了 `NSArray` 和 `NSDictionary` 中，因为这样会导致崩溃。
@@ -368,6 +383,7 @@ NSNumber *shouldUseLiterals = [NSNumber numberWithBool:YES];
 NSNumber *buildingZIPCode = [NSNumber numberWithInteger:10018];
 ```
 
+<a name="CGRect-Functions"></a>
 ## CGRect 函数
 
 当访问 `x`, `y`, `width`，或 `CGRect` 中的 `height`，总是应该使用 `CGGeometry` 函数，而不应该直接访问结构的成员。来自 Apple 的 [CGGeometry 文档](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html) 参考：
@@ -396,6 +412,7 @@ CGFloat width = frame.size.width;
 CGFloat height = frame.size.height;
 ```
 
+<a name="Constants"></a>
 ## 常量
 
 常量比一行数字或文字更好，因为它们能够很容易的被各种变量复制，还可以快速地在不必找到位置再替换的条件下改变值。应该使用 `static` 来定义常量，并且不要使用 `#define` 除非明确表明是作为一个宏。
@@ -416,6 +433,9 @@ static const CGFloat NYTImageThumbnailHeight = 50.0;
 #define thumbnailHeight 2
 ```
 
+<a name="Enumerated-Types"></a>
+## 枚举类型
+
 当使用 `enum` 的时候，通常建议新的固定基础类型规范，因为它具有更强的类型检查和代码自动化。现在的 SDK 已包含了一个宏来来很方便的鼓励固定基础类型的使用 - `NS_ENUM()`。
 
 **例如：**
@@ -427,6 +447,7 @@ typedef NS_ENUM(NSInteger, NYTAdRequestState) {
 };
 ```
 
+<a name="Bitmasks"></a>
 ## Bitmasks
 
 When working with bitmasks, use the `NS_OPTIONS` macro.
@@ -441,6 +462,8 @@ typedef NS_OPTIONS(NSUInteger, NYTAdCategory) {
   NYTAdCategoryTechnology = 1 << 3
 };
 ```
+
+<a name="Case-Statements"></a>
 ## Case 语句
 
 对于 case 语句来说，花括号没必要，除非编译器强制要求。  
@@ -501,6 +524,7 @@ switch (menuType) {
 }
 ```
 
+<a name="Private-Properties"></a>
 ## 私有属性
 
 私有属性应该在类的实现文件的类扩展处声明（匿名类别）。永远不要使用命名类别（例如：`NYTPrivate` 或 `private`），除非是用来扩展另一个类。
@@ -517,6 +541,7 @@ switch (menuType) {
 @end
 ```
 
+<a name="Image Naming"></a>
 ## 图片命名
 
 图片名字应该与组织和开发者的本意保持一致。它们应该使用驼峰式命名规范，并且使用一个能够描述它们用途的文字来命名。使用无前缀的类名或自定义的属性名开始，然后紧接着是颜色或布局的描述，最后是它们的状态描述。
@@ -528,6 +553,7 @@ switch (menuType) {
 
 相似用途的图片应该使用文件夹组织起来。
 
+<a name="Booleans"></a>
 ## 布尔值
 
 既然 `nil` 等同于 `NO` 那就没有必要在条件语句中进行比较。永远不要直接把某些东西与 `YES` 相比较，因为 `YES` 的定义等同于 1 并且一个 `BOOL` 相当于 8 位。
@@ -574,6 +600,7 @@ if ([someObject boolValue] == NO)
 
 示例参考来自 [Cocoa Naming Guidelines](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingIvarsAndTypes.html#//apple_ref/doc/uid/20001284-BAJGIIJE)。
 
+<a name="Singletons"></a>
 ## 单例
 
 单例对象应该使用安全线程机制来创建它们的共享实例。
@@ -593,6 +620,7 @@ if ([someObject boolValue] == NO)
 
 这能够防止[某些时候可能出现各种程序崩溃的问题](http://cocoasamurai.blogspot.com/2011/04/singletons-your-doing-them-wrong.html)。
 
+<a name="Xcode-Project"></a>
 ## Xcode 工程
 
 为了防止文件散乱，实际文件应该要与 Xcode 工程里的文件保持同步。任何 Xcode 分组的创建都应该能够在文件系统里体现出来。代码文件不仅仅单一地根据类型来分组，而且还可以按更明显的用途来分组。
